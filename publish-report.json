@@ -1,0 +1,55 @@
+{
+  "timestamp": "2026-02-25T17:45:26.941Z",
+  "game": {
+    "name": "数字华容道·诗词版",
+    "englishName": "Poem 2048 Puzzle",
+    "category": "益智",
+    "subCategory": "教育",
+    "tags": [
+      "2048",
+      "诗词",
+      "传统文化",
+      "数字游戏",
+      "华容道",
+      "教育游戏"
+    ],
+    "ageRating": "全年龄段",
+    "version": "1.0.0",
+    "description": "融合2048数字合成与中国诗词文化的益智游戏"
+  },
+  "developer": {
+    "name": "数字华容道工作室",
+    "type": "个人开发者",
+    "contact": {
+      "email": "qq156701660@qq.com",
+      "phone": "+86 13800138000"
+    }
+  },
+  "files": {
+    "zip_file": "/Users/zhangzhan/Desktop/Jarvis_Output/taptap_game/poem-2048-game.zip",
+    "config_file": "/Users/zhangzhan/Desktop/Jarvis_Output/taptap_game/taptap-config.json",
+    "legal_files": [
+      "privacy.html",
+      "terms.html"
+    ]
+  },
+  "urls": {
+    "github_repo": "https://github.com/qq156701660/taptap-game",
+    "github_pages": "https://qq156701660.github.io/taptap-game/",
+    "privacy_policy": "https://qq156701660.github.io/taptap-game/privacy.html",
+    "user_agreement": "https://qq156701660.github.io/taptap-game/terms.html"
+  },
+  "next_steps": [
+    "1. 访问 https://developer.taptap.com 完成实名认证",
+    "2. 创建游戏项目并填写详细信息",
+    "3. 上传游戏ZIP文件",
+    "4. 提交审核申请",
+    "5. 等待审核结果",
+    "6. 审核通过后发布游戏"
+  ],
+  "estimated_timeline": {
+    "developer_registration": "1-2个工作日",
+    "game_review": "1-3个工作日",
+    "total_time": "2-5个工作日"
+  }
+}

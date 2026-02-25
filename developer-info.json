@@ -1,0 +1,77 @@
+{
+  "developer_profile": {
+    "company_name": "数字华容道工作室",
+    "legal_entity": "个人开发者",
+    "contact_person": "张展",
+    "contact_email": "qq156701660@qq.com",
+    "contact_phone": "+86 13800138000",
+    "id_card_number": "110101199001011234",
+    "business_license": null,
+    "tax_registration": null,
+    "bank_account": {
+      "bank_name": "中国工商银行",
+      "account_name": "张展",
+      "account_number": "6222021234567890123"
+    }
+  },
+  "game_info": {
+    "chinese_name": "数字华容道·诗词版",
+    "english_name": "Poem 2048 Puzzle",
+    "short_description": "融合2048数字合成与中国诗词文化的益智游戏",
+    "full_description": "《数字华容道·诗词版》是一款创新的益智游戏，将经典的2048数字合成玩法与中国传统诗词文化完美结合。玩家通过合成数字来解锁诗词碎片，在享受数字逻辑乐趣的同时学习中国传统文化。\n\n游戏特色：\n1. 经典2048玩法 - 锻炼逻辑思维和策略规划\n2. 诗词解锁系统 - 合成特定数字解锁经典诗词\n3. 华容道挑战 - 移动方块完成诗词排列\n4. 多种游戏模式 - 经典、诗词、挑战三种模式\n5. 文化学习 - 在游戏中学习中国传统文化\n6. 成就系统 - 丰富的成就和奖励\n\n适合人群：\n- 喜欢数字和逻辑游戏的玩家\n- 对中国传统文化感兴趣的用户\n- 希望锻炼思维能力的各年龄段人群\n- 寻找休闲教育游戏的用户",
+    "category": "益智",
+    "sub_category": "教育",
+    "tags": ["2048", "诗词", "传统文化", "数字游戏", "华容道", "教育游戏"],
+    "age_rating": "全年龄段",
+    "language": "简体中文",
+    "platform": "HTML5小游戏",
+    "version": "1.0.0",
+    "file_size": "2.5MB",
+    "network_required": "部分功能需要网络",
+    "in_app_purchases": false,
+    "ads": false,
+    "multiplayer": false
+  },
+  "legal_documents": {
+    "privacy_policy_url": "https://qq156701660.github.io/taptap-game/privacy.html",
+    "user_agreement_url": "https://qq156701660.github.io/taptap-game/terms.html",
+    "copyright_statement": "本游戏中的诗词内容来源于公共领域的经典作品。游戏代码和设计遵循MIT开源协议。",
+    "content_rating": {
+      "violence": "无",
+      "nudity": "无",
+      "language": "无",
+      "alcohol": "无",
+      "gambling": "无"
+    }
+  },
+  "marketing_materials": {
+    "icon_512": "https://via.placeholder.com/512x512/4CAF50/FFFFFF?text=诗",
+    "screenshots": [
+      "https://via.placeholder.com/1280x720/2196F3/FFFFFF?text=游戏主界面",
+      "https://via.placeholder.com/1280x720/4CAF50/FFFFFF?text=诗词解锁",
+      "https://via.placeholder.com/1280x720/FF9800/FFFFFF?text=游戏胜利",
+      "https://via.placeholder.com/1280x720/9C27B0/FFFFFF?text=成就系统"
+    ],
+    "promo_video": null,
+    "featured_image": "https://via.placeholder.com/1920x1080/1a1a2e/FFD700?text=数字华容道·诗词版",
+    "keywords": ["2048", "诗词", "益智游戏", "数字合成", "传统文化", "教育游戏", "华容道"]
+  },
+  "technical_info": {
+    "entry_file": "index.html",
+    "resolution": "自适应",
+    "orientation": "竖屏为主",
+    "supported_browsers": ["Chrome", "Safari", "Firefox", "微信浏览器", "QQ浏览器"],
+    "api_usage": ["LocalStorage", "Service Worker", "Web Audio API"],
+    "third_party_libraries": [],
+    "update_frequency": "每月一次",
+    "support_email": "support@poem2048.game",
+    "bug_report_url": "https://github.com/qq156701660/taptap-game/issues"
+  },
+  "monetization": {
+    "pricing_model": "免费",
+    "in_app_products": [],
+    "ad_network": null,
+    "revenue_share": "不适用",
+    "payment_methods": []
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "metadata": {
+    "name": "数字华容道·诗词版",
+    "english_name": "Poem 2048 Puzzle",
+    "category": "益智",
+    "sub_category": "教育",
+    "tags": [
+      "2048",
+      "诗词",
+      "传统文化",
+      "数字游戏",
+      "华容道",
+      "教育游戏"
+    ],
+    "age_rating": "全年龄段",
+    "version": "1.0.0",
+    "description": "融合2048数字合成与中国诗词文化的益智游戏",
+    "language": "zh-CN",
+    "orientation": "portrait",
+    "resolution": "adaptive"
+  },
+  "technical": {
+    "entry_file": "index.html",
+    "supported_platforms": [
+      "web",
+      "mobile"
+    ],
+    "required_features": [
+      "local_storage",
+      "service_worker"
+    ],
+    "network_requirements": "optional"
+  },
+  "legal": {
+    "privacy_policy_url": "https://qq156701660.github.io/taptap-game/privacy.html",
+    "user_agreement_url": "https://qq156701660.github.io/taptap-game/terms.html",
+    "copyright_notice": "诗词内容来源于公共领域经典作品"
+  },
+  "marketing": {
+    "screenshots": [
+      "https://via.placeholder.com/1280x720/2196F3/FFFFFF?text=游戏主界面",
+      "https://via.placeholder.com/1280x720/4CAF50/FFFFFF?text=诗词解锁",
+      "https://via.placeholder.com/1280x720/FF9800/FFFFFF?text=游戏胜利",
+      "https://via.placeholder.com/1280x720/9C27B0/FFFFFF?text=成就系统"
+    ],
+    "icon_url": "https://via.placeholder.com/512x512/4CAF50/FFFFFF?text=诗",
+    "promo_video": null,
+    "keywords": [
+      "2048",
+      "诗词",
+      "传统文化",
+      "数字游戏",
+      "华容道",
+      "教育游戏"
+    ]
+  }
+}
