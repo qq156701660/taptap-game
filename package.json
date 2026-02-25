@@ -1,0 +1,57 @@
+{
+  "name": "poem-2048-game",
+  "version": "1.0.0",
+  "description": "数字华容道·诗词版 - 融合2048数字合成与中国诗词文化的益智游戏",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve .",
+    "build": "echo 'No build step required for HTML5 game'",
+    "test": "echo 'No tests specified'",
+    "deploy": "gh-pages -d .",
+    "lint": "eslint js/*.js",
+    "format": "prettier --write '**/*.{js,html,css,json,md}'"
+  },
+  "keywords": [
+    "game",
+    "2048",
+    "chinese",
+    "poetry",
+    "puzzle",
+    "education",
+    "html5",
+    "taptap"
+  ],
+  "author": "Jarvis AI Assistant",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/qq156701660/taptap-game.git"
+  },
+  "bugs": {
+    "url": "https://github.com/qq156701660/taptap-game/issues"
+  },
+  "homepage": "https://qq156701660.github.io/taptap-game",
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "prettier": "^3.0.0",
+    "serve": "^14.0.0",
+    "gh-pages": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "not dead",
+    "not ie <= 11"
+  ],
+  "taptap": {
+    "appId": "YOUR_TAPTAP_APP_ID",
+    "platform": "html5",
+    "category": "puzzle",
+    "tags": ["education", "chinese", "numbers", "poetry"],
+    "minSdkVersion": "1.0.0",
+    "targetSdkVersion": "1.0.0"
+  }
+}

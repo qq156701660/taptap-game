@@ -1,0 +1,130 @@
+{
+  "name": "数字华容道·诗词版",
+  "short_name": "诗词华容道",
+  "description": "融合2048数字合成与中国诗词文化的益智游戏",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#1a1a2e",
+  "theme_color": "#d32f2f",
+  "categories": ["game", "education", "puzzle"],
+  "icons": [
+    {
+      "src": "assets/icons/icon-72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/icon-96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/icon-128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/icon-144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/icon-152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/icon-384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "assets/screenshots/screenshot1.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "游戏主界面"
+    },
+    {
+      "src": "assets/screenshots/screenshot2.png",
+      "sizes": "750x1334",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "移动端游戏界面"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "开始新游戏",
+      "short_name": "新游戏",
+      "description": "开始一局新的游戏",
+      "url": "/?mode=new",
+      "icons": [{ "src": "assets/icons/play-96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "继续游戏",
+      "short_name": "继续",
+      "description": "继续上次的游戏",
+      "url": "/?mode=continue",
+      "icons": [{ "src": "assets/icons/continue-96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "查看成就",
+      "short_name": "成就",
+      "description": "查看游戏成就和统计数据",
+      "url": "/?mode=achievements",
+      "icons": [{ "src": "assets/icons/trophy-96.png", "sizes": "96x96" }]
+    }
+  ],
+  "related_applications": [
+    {
+      "platform": "play",
+      "url": "https://play.google.com/store/apps/details?id=com.example.game",
+      "id": "com.example.game"
+    },
+    {
+      "platform": "itunes",
+      "url": "https://apps.apple.com/app/id1234567890"
+    }
+  ],
+  "prefer_related_applications": false,
+  "features": [
+    "game",
+    "offline",
+    "notifications"
+  ],
+  "permissions": [
+    "notifications"
+  ],
+  "display_override": ["window-controls-overlay", "minimal-ui"],
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "protocol_handlers": [
+    {
+      "protocol": "web+taptapgame",
+      "url": "/?game=%s"
+    }
+  ]
+}

@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="《数字华容道·诗词版》 - 融合2048数字合成与中国诗词文化的益智游戏">
+    <meta name="keywords" content="2048,华容道,诗词,益智游戏,数字游戏,传统文化">
+    <title>数字华容道·诗词版 - TapTap游戏</title>
+    
+    <!-- PWA配置 -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#d32f2f">
+    <link rel="icon" href="assets/icons/icon-192.png" type="image/png">
+    
+    <!-- 字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- 样式 -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- TapTap SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@taptap/sdk@latest/dist/taptap.min.js"></script>
+</head>
+<body>
+    <!-- 游戏加载界面 -->
+    <div id="loading-screen" class="screen active">
+        <div class="loading-container">
+            <div class="loading-logo">
+                <div class="chinese-seal">
+                    <span>诗</span>
+                </div>
+                <h1>数字华容道·诗词版</h1>
+            </div>
+            <div class="loading-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="loading-text" id="loadingText">加载游戏中...</div>
+            </div>
+            <div class="loading-tip">
+                <p><i class="tip-icon">💡</i> 提示：合成数字，解锁诗词，体验传统文化魅力</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 主游戏界面 -->
+    <div id="game-screen" class="screen">
+        <!-- 游戏头部 -->
+        <header class="game-header">
+            <div class="header-left">
+                <button id="menuBtn" class="icon-btn" aria-label="菜单">
+                    <span>☰</span>
+                </button>
+                <div class="game-title">
+                    <h2>数字华容道·诗词版</h2>
+                    <div class="game-subtitle">TapTap独家</div>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="score-display">
+                    <div class="score-item">
+                        <span class="score-label">分数</span>
+                        <span class="score-value" id="currentScore">0</span>
+                    </div>
+                    <div class="score-item">
+                        <span class="score-label">最高</span>
+                        <span class="score-value" id="bestScore">0</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- 游戏主区域 -->
+        <main class="game-main">
+            <!-- 诗词展示区 -->
+            <div class="poem-section">
+                <div class="poem-header">
+                    <h3><i class="poem-icon">📜</i> 当前诗词</h3>
+                    <div class="poem-progress">
+                        <span id="poemProgress">0/5</span> 碎片
+                    </div>
+                </div>
+                <div class="poem-display" id="poemDisplay">
+                    <div class="poem-line">静夜思 · 李白</div>
+                    <div class="poem-content">
+                        <span class="poem-char unlocked">床</span>
+                        <span class="poem-char locked">前</span>
+                        <span class="poem-char locked">明</span>
+                        <span class="poem-char locked">月</span>
+                        <span class="poem-char locked">光</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 游戏网格 -->
+            <div class="game-grid-container">
+                <div class="grid-header">
+                    <div class="grid-info">
+                        <span class="grid-size">4×4</span>
+                        <span class="grid-target">目标: <span id="targetNumber">2048</span></span>
+                    </div>
+                    <div class="grid-controls">
+                        <button id="undoBtn" class="control-btn" disabled>
+                            <span>↶</span> 撤销
+                        </button>
+                        <button id="restartBtn" class="control-btn">
+                            <span>↻</span> 重来
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="game-grid" id="gameGrid">
+                    <!-- 4×4网格由JavaScript动态生成 -->
+                </div>
+                
+                <div class="grid-footer">
+                    <div class="move-count">
+                        移动: <span id="moveCount">0</span> 次
+                    </div>
+                    <div class="time-count">
+                        时间: <span id="gameTime">00:00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 数字提示区 -->
+            <div class="number-hint">
+                <div class="hint-header">
+                    <h4><i class="hint-icon">🎯</i> 下一个数字</h4>
+                </div>
+                <div class="hint-numbers">
+                    <div class="hint-number" data-value="2">2</div>
+                    <div class="hint-number" data-value="4">4</div>
+                    <div class="hint-number" data-value="8">8</div>
+                </div>
+            </div>
+        </main>
+
+        <!-- 游戏控制区 -->
+        <footer class="game-footer">
+            <div class="control-buttons">
+                <button id="upBtn" class="direction-btn" data-direction="up">
+                    <span>↑</span>
+                </button>
+                <div class="horizontal-controls">
+                    <button id="leftBtn" class="direction-btn" data-direction="left">
+                        <span>←</span>
+                    </button>
+                    <button id="downBtn" class="direction-btn" data-direction="down">
+                        <span>↓</span>
+                    </button>
+                    <button id="rightBtn" class="direction-btn" data-direction="right">
+                        <span>→</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <button id="hintBtn" class="action-btn">
+                    <span>💡</span> 提示
+                </button>
+                <button id="soundBtn" class="action-btn active">
+                    <span>🔊</span> 音效
+                </button>
+                <button id="shareBtn" class="action-btn">
+                    <span>📤</span> 分享
+                </button>
+            </div>
+        </footer>
+    </div>
+
+    <!-- 菜单界面 -->
+    <div id="menu-screen" class="screen overlay">
+        <div class="menu-container">
+            <div class="menu-header">
+                <h2>游戏菜单</h2>
+                <button id="closeMenuBtn" class="close-btn">×</button>
+            </div>
+            
+            <div class="menu-content">
+                <div class="menu-section">
+                    <h3><i class="menu-icon">🎮</i> 游戏模式</h3>
+                    <div class="menu-options">
+                        <button class="menu-option active" data-mode="classic">
+                            <span class="option-icon">🔢</span>
+                            <span class="option-text">经典模式</span>
+                            <span class="option-desc">传统2048玩法</span>
+                        </button>
+                        <button class="menu-option" data-mode="poem">
+                            <span class="option-icon">📜</span>
+                            <span class="option-text">诗词模式</span>
+                            <span class="option-desc">解锁诗词碎片</span>
+                        </button>
+                        <button class="menu-option" data-mode="challenge">
+                            <span class="option-icon">🏆</span>
+                            <span class="option-text">挑战模式</span>
+                            <span class="option-desc">限时挑战</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="menu-section">
+                    <h3><i class="menu-icon">⚙️</i> 游戏设置</h3>
+                    <div class="menu-settings">
+                        <div class="setting-item">
+                            <span class="setting-label">网格大小</span>
+                            <div class="setting-control">
+                                <button class="size-btn active" data-size="4">4×4</button>
+                                <button class="size-btn" data-size="5">5×5</button>
+                                <button class="size-btn" data-size="6">6×6</button>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <span class="setting-label">游戏难度</span>
+                            <div class="setting-control">
+                                <select id="difficultySelect" class="difficulty-select">
+                                    <option value="easy">简单</option>
+                                    <option value="normal" selected>普通</option>
+                                    <option value="hard">困难</option>
+                                    <option value="expert">专家</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <span class="setting-label">动画效果</span>
+                            <div class="setting-control">
+                                <label class="switch">
+                                    <input type="checkbox" id="animationToggle" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="menu-section">
+                    <h3><i class="menu-icon">📊</i> 游戏数据</h3>
+                    <div class="menu-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">总游戏次数</span>
+                            <span class="stat-value" id="totalGames">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">最高分数</span>
+                            <span class="stat-value" id="menuBestScore">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">诗词收集</span>
+                            <span class="stat-value" id="poemsCollected">0/50</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">游戏时间</span>
+                            <span class="stat-value" id="totalPlayTime">0h</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="menu-actions">
+                    <button id="continueBtn" class="menu-action-btn primary">
+                        继续游戏
+                    </button>
+                    <button id="newGameBtn" class="menu-action-btn">
+                        新游戏
+                    </button>
+                    <button id="achievementsBtn" class="menu-action-btn">
+                        成就查看
+                    </button>
+                    <button id="aboutBtn" class="menu-action-btn">
+                        关于游戏
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 游戏结束界面 -->
+    <div id="gameover-screen" class="screen overlay">
+        <div class="gameover-container">
+            <div class="gameover-header">
+                <div class="gameover-icon" id="gameoverIcon">🎉</div>
+                <h2 id="gameoverTitle">游戏胜利！</h2>
+                <p id="gameoverMessage">恭喜你达成了2048目标！</p>
+            </div>
+            
+            <div class="gameover-stats">
+                <div class="stat-card">
+                    <div class="stat-card-label">最终分数</div>
+                    <div class="stat-card-value" id="finalScore">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-label">移动次数</div>
+                    <div class="stat-card-value" id="finalMoves">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-label">游戏时间</div>
+                    <div class="stat-card-value" id="finalTime">00:00</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-label">最大数字</div>
+                    <div class="stat-card-value" id="finalMaxNumber">0</div>
+                </div>
+            </div>
+            
+            <div class="gameover-poem" id="gameoverPoem">
+                <div class="poem-unlocked">
+                    <h4><i class="poem-icon">🎁</i> 解锁新诗词</h4>
+                    <div class="unlocked-poem-content">
+                        "床前明月光，疑是地上霜。"
+                    </div>
+                </div>
+            </div>
+            
+            <div class="gameover-actions">
+                <button id="playAgainBtn" class="gameover-btn primary">
+                    <span>↻</span> 再玩一次
+                </button>
+                <button id="shareScoreBtn" class="gameover-btn">
+                    <span>📤</span> 分享成绩
+                </button>
+                <button id="backToMenuBtn" class="gameover-btn">
+                    <span>🏠</span> 返回菜单
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 关于界面 -->
+    <div id="about-screen" class="screen overlay">
+        <div class="about-container">
+            <div class="about-header">
+                <h2>关于游戏</h2>
+                <button id="closeAboutBtn" class="close-btn">×</button>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-logo">
+                    <div class="about-seal">
+                        <span>诗</span>
+                    </div>
+                    <h3>数字华容道·诗词版</h3>
+                </div>
+                
+                <div class="about-section">
+                    <h4><i class="about-icon">🎮</i> 游戏介绍</h4>
+                    <p>《数字华容道·诗词版》是一款融合了经典2048数字合成玩法与中国传统诗词文化的益智游戏。在游戏中，玩家通过合成数字来解锁诗词碎片，体验数字逻辑与文学艺术的完美结合。</p>
+                </div>
+                
+                <div class="about-section">
+                    <h4><i class="about-icon">✨</i> 游戏特色</h4>
+                    <ul class="about-features">
+                        <li><strong>数字合成</strong>：经典的2048玩法，锻炼逻辑思维</li>
+                        <li><strong>诗词解锁</strong>：合成特定数字解锁经典诗词</li>
+                        <li><strong>华容道挑战</strong>：移动方块完成诗词排列</li>
+                        <li><strong>文化学习</strong>：在游戏中学习中国传统文化</li>
+                        <li><strong>多种模式</strong>：经典、诗词、挑战三种游戏模式</li>
+                    </ul>
+                </div>
+                
+                <div class="about-section">
+                    <h4><i class="about-icon">📱</i> 平台支持</h4>
+                    <div class="platform-badges">
+                        <div class="platform-badge taptap">
+                            <span>TapTap</span>
+                        </div>
+                        <div class="platform-badge pwa">
+                            <span>PWA</span>
+                        </div>
+                        <div class="platform-badge mobile">
+                            <span>移动端</span>
+                        </div>
+                        <div class="platform-badge desktop">
+                            <span>桌面端</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-section">
+                    <h4><i class="about-icon">👨‍💻</i> 开发信息</h4>
+                    <div class="developer-info">
+                        <p><strong>开发团队</strong>：Jarvis AI Assistant</p>
+                        <p><strong>游戏类型</strong>：益智/教育/休闲</p>
+                        <p><strong>发布日期</strong>：2026年2月</p>
+                        <p><strong>游戏版本</strong>：v1.0.0</p>
+                    </div>
+                </div>
+                
+                <div class="about-section">
+                    <h4><i class="about-icon">📄</i> 版权声明</h4>
+                    <p class="copyright-notice">
+                        本游戏为开源项目，遵循MIT许可证。游戏中的诗词内容来源于公共领域的经典作品。游戏代码和设计可自由使用和修改，但请保留原作者署名。
+                    </p>
+                </div>
+                
+                <div class="about-actions">
+                    <button id="viewSourceBtn" class="about-btn">
+                        <span>📁</span> 查看源码
+                    </button>
+                    <button id="reportIssueBtn" class="about-btn">
+                        <span>🐛</span> 反馈问题
+                    </button>
+                    <button id="closeAboutActionBtn" class="about-btn primary">
+                        返回游戏
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 触摸控制提示 -->
+    <div id="touch-hint" class="touch-hint">
+        <div class="touch-hint-content">
+            <p>💡 提示：使用方向键或滑动屏幕控制方块移动</p>
+            <button id="closeTouchHint" class="touch-hint-close">知道了</button>
+        </div>
+    </div>
+
+    <!-- 游戏脚本 -->
+    <script src="js/game.js" defer></script>
+    <script src="js/grid.js" defer></script>
+    <script src="js/tiles.js" defer></script>
+    <script src="js/score.js" defer></script>
+    <script src="js/levels.js" defer></script>
+    
+    <!-- 初始化脚本 -->
+    <script>
+        // 游戏初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('《数字华容道·诗词版》游戏初始化...');
+            
+            // 模拟加载进度
+            let progress = 0;
+            const progressInterval = setInterval(() => {
+                progress += Math.random() * 15;
+                if (progress > 100) progress = 100;
+                
+                document.getElementById('progressFill').style.width = progress + '%';
+                document.getElementById('loadingText').textContent = 
+                    `加载游戏中... ${Math.floor(progress)}%`;
+                
+                if (progress >= 100) {
+                    clearInterval(progressInterval);
+                    setTimeout(() => {
+                        document.getElementById('loading-screen').classList.remove('active');
+                        document.getElementById('game-screen').classList.add('active');
+                        console.log('游戏加载完成！');
+                        
+                        // 显示触摸提示（首次游戏）
+                        if (!localStorage.getItem('touchHintShown')) {
+                            document.getElementById('touch-hint').style.display = 'block';
+                            localStorage.setItem('touchHintShown', 'true');
+                        }
+                    }, 500);
+                }
+            }, 100);
+            
+            // TapTap SDK初始化
+            if (typeof TapTap !== 'undefined') {
+                TapTap.init({
+                    appId: 'YOUR_APP_ID', // 需要替换为实际App ID
+                    onReady: () => {
+                        console.log('TapTap SDK初始化成功');
+                    },
+                    onError: (error) => {
+                        console.warn('TapTap SDK初始化失败:', error);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
